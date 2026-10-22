@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>나의 독서 서재</title>
+<style>
+:root{--bg:#f8f7f3;--card:#fff;--ink:#25332e;--sub:#75817b;--accent:#397c64;--light:#e8f4ec;--line:#e5e8e2;--warn:#b96c34;--red:#b74d55}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,'Noto Sans KR',sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}.wrap{max-width:1100px;padding:20px 17px 90px;margin:auto}header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:5px 0 23px}h1{margin:0;font-size:27px}h2{font-size:20px;margin:0 0 13px}h3{margin:0 0 8px;font-size:16px}.eyebrow{font-size:11px;letter-spacing:2px;color:var(--accent);font-weight:800}.muted{color:var(--sub);font-size:13px}.btn{border:1px solid var(--line);padding:10px 14px;border-radius:11px;background:white;color:var(--ink);font-weight:650}.btn.primary{background:var(--accent);border-color:var(--accent);color:white}.btn.danger{color:var(--red)}.btn.small{padding:7px 10px;font-size:12px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}.stat,.panel{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:17px}.stat .n{font-size:28px;font-weight:850;margin:8px 0 2px}.stat .label{font-size:12px;color:var(--sub)}.tabs{display:flex;gap:7px;overflow-x:auto;margin:18px 0;scrollbar-width:none}.tab{white-space:nowrap;border:1px solid var(--line);background:#fff;padding:9px 13px;border-radius:100px}.tab.on{background:var(--ink);color:#fff}.toolbar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:15px}.toolbar input{flex:1;min-width:180px}.field{width:100%;padding:11px 12px;background:white;color:var(--ink);border:1px solid #d9dfd8;border-radius:10px;outline-color:var(--accent)}label{font-size:13px;font-weight:650;display:block;margin-bottom:5px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:14px}.book{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;cursor:pointer;min-width:0}.book:hover{border-color:#8ab7a3}.title-results{display:grid;gap:7px;margin-top:9px;max-height:320px;overflow-y:auto}.title-result{display:flex;align-items:center;gap:11px;text-align:left;width:100%;padding:9px;background:#fafbf9;border:1px solid var(--line);border-radius:10px}.title-result:hover{border-color:var(--accent)}.title-result img,.result-placeholder{width:42px;height:60px;object-fit:contain;flex-shrink:0}.result-placeholder{display:grid;place-items:center;background:var(--light)}.result-body{flex:1;min-width:0;display:grid;gap:4px}.result-body strong{font-size:13px}.result-body small{font-size:11px;color:var(--sub)}.cover{height:190px;object-fit:contain;width:100%;border-radius:8px;background:#eff0e8}.placeholder{display:flex;align-items:center;justify-content:center;background:#e5eee6;color:#5b8270;font-size:41px}.booktitle{font-weight:750;font-size:14px;margin:9px 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tags{display:flex;gap:5px;flex-wrap:wrap;margin:7px 0}.tag{background:#f1f2f0;padding:4px 6px;border-radius:6px;font-size:10px;color:#526359}.tag.green{background:var(--light);color:var(--accent)}.tag.orange{background:#fff0dc;color:#986023}.progress{height:7px;border-radius:10px;background:#e8eae6;overflow:hidden;margin:8px 0}.progress>div{height:100%;background:var(--accent)}.flex{display:flex;align-items:center;gap:10px}.between{justify-content:space-between}.hidden{display:none!important}.empty{text-align:center;color:var(--sub);padding:45px 10px}.two{display:grid;grid-template-columns:1fr 1fr;gap:13px}.section{margin-top:18px}.detailtop{display:flex;gap:18px}.detailcover{height:190px;width:125px;object-fit:contain;background:#eef0e9;border-radius:8px}.line{border:0;border-top:1px solid var(--line);margin:18px 0}.modalback{position:fixed;inset:0;background:#13241c9c;display:flex;justify-content:center;align-items:center;padding:15px;z-index:10}.modal{background:#fff;border-radius:19px;width:min(100%,650px);max-height:92vh;overflow:auto;padding:21px}.modalhead{display:flex;justify-content:space-between;align-items:start;gap:10px;margin-bottom:15px}.formrow{margin-bottom:13px}.formrow .muted{margin:5px 0}.alert{background:#fff3e6;color:#98571d;padding:10px;border-radius:10px;font-size:13px}.success{background:var(--light);color:var(--accent);padding:10px;border-radius:10px;font-size:13px}.record{border-top:1px solid var(--line);padding:10px 0;font-size:13px}.chart{display:flex;align-items:end;gap:7px;height:145px;border-bottom:1px solid var(--line);padding-bottom:18px;margin-top:14px}.barcol{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:end;align-items:center;position:relative}.bar{background:#6eae91;min-height:2px;width:60%;border-radius:5px 5px 0 0}.barlabel{position:absolute;top:100%;font-size:10px;color:var(--sub);padding-top:5px}.barvalue{font-size:10px;color:var(--sub);margin-bottom:3px}video{width:100%;max-height:280px;background:#1e2724;border-radius:12px}.stickyactions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}textarea{min-height:85px;resize:vertical}.footer{font-size:12px;color:var(--sub);text-align:center;margin-top:25px}@media(max-width:610px){.stats{grid-template-columns:repeat(2,1fr)}.stat{padding:13px}.stat .n{font-size:24px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cover{height:156px}.two{grid-template-columns:1fr}.modal{padding:16px}.detailcover{height:150px;width:95px}header h1{font-size:23px}.wrap{padding-top:15px}}
+
+/* Warm mobile-first book registration inspired by user's reference */
+.modalback:has(.registration-form),.modalback:has(.registration-choices){background:#24201bbb;align-items:center}
+.modal:has(.registration-form){background:#f7efe4;color:#46423e;border-radius:24px;padding:0;width:min(100%,650px);max-height:95dvh}
+.registration-form{padding:20px clamp(18px,5vw,35px) 28px}
+.registration-form .modalhead{align-items:center;margin-bottom:26px}
+.registration-form .modalhead h2{font-size:27px;color:#494440}
+.registration-form .field{background:#f1ede8;border:0;border-radius:8px;padding:13px 12px;min-width:0}
+.registration-form .formrow{margin-bottom:17px}
+.registration-form label{color:#625d58;font-size:14px}
+.registration-form .two{grid-template-columns:1fr;gap:0;background:#fffaf4;border-radius:19px;padding:19px 15px;margin:15px 0}
+.registration-form .two .formrow:last-child{margin-bottom:0}
+.registration-form .btn:not(.primary){background:#fffaf5;border:1px solid #e4dbd0;color:#4b6d83}
+.registration-form .btn.primary{background:#4e7e98;border-color:#4e7e98}
+.registration-form .flex{flex-wrap:wrap}
+.registration-form .flex input{flex:1;min-width:140px}
+.registration-cover{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;margin:5px auto 24px}
+.registration-cover img,.registration-cover .registration-cover-placeholder{height:190px;width:140px;object-fit:contain;border-radius:12px;box-shadow:0 6px 19px #00000018;background:#e9dfd3}
+.registration-cover-placeholder{display:grid;place-items:center;font-size:54px}
+.registration-cover small{color:#8a837b}
+.registration-section-title{font-size:15px;font-weight:750;margin:22px 0 10px;color:#69615b}
+.registration-form .modalhead .btn{border-radius:30px}
+.registration-choices{padding:12px 3px 4px}
+.modal:has(.registration-choices){background:#fbf7f2;max-width:490px;border-radius:25px;padding:22px}
+.registration-choices h2{text-align:center;color:#514b46;margin:2px 0 22px}
+.registration-choice{display:flex;align-items:center;gap:16px;width:100%;background:transparent;border:0;border-top:1px solid #dedbd4;padding:21px 15px;text-align:left;font-size:17px;color:#56524e}
+.registration-choice strong{display:block;font-size:17px}
+.registration-choice small{display:block;color:#827c76;margin-top:6px;font-size:12px}
+.registration-choice .regicon{font-size:26px;width:36px;text-align:center}
+@media(max-width:610px){.modalback:has(.registration-choices){align-items:flex-end;padding:0}.modal:has(.registration-choices){border-radius:28px 28px 0 0;width:100%;max-width:none;padding:19px 19px max(18px,env(safe-area-inset-bottom))}.modalback:has(.registration-form){padding:0}.modal:has(.registration-form){width:100%;max-height:100dvh;height:100dvh;border-radius:0}.registration-form{padding:25px 20px 45px}}
+
+/* 다중 선택 */
+.book{position:relative}.book.selected-book{border:2px solid var(--accent);background:#f3faf5}
+.book-select{position:absolute;top:8px;left:8px;z-index:1;display:flex;align-items:center;gap:3px;background:#fffdf2f0;border:1px solid #cbd8ca;border-radius:8px;padding:6px;cursor:pointer}
+.book-select input{width:18px;height:18px;accent-color:var(--accent);cursor:pointer}
+.bulkbar{background:#eff8f1;border:1px solid #c6dcca;border-radius:14px;padding:12px;margin:10px 0 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bulkbar select{width:auto;max-width:100%}.bulkbar .btn{white-space:nowrap}
+.bulk-note{font-size:12px;color:var(--sub);width:100%}
+
+/* 갤럭시 등 좁은 화면: 메인 책장 검색 도구만 반응형 배치 */
+@media (max-width:610px) {
+  #main { min-width:0; max-width:100%; }
+  #main .toolbar {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:9px;
+    width:100%;
+    min-width:0;
+  }
+  #main .toolbar > #bookSearch,
+  #main .toolbar > #statusFilter {
+    grid-column:1 / -1;
+    display:block;
+    width:100% !important;
+    min-width:0;
+    max-width:100%;
+    flex:none;
+    font-size:16px;
+  }
+  #main .toolbar > #addMain,
+  #main .toolbar > #toggleMulti,
+  #main .toolbar > #randomUnread {
+    min-width:0;
+    width:100%;
+    padding:11px 5px;
+    font-size:13px;
+    line-height:1.35;
+    white-space:normal;
+    overflow-wrap:anywhere;
+  }
+}
+
+@media (max-width:610px) {
+  #main .toolbar > #randomUnread {grid-column:1 / -1;}
+}
+
+/* 등록 후 30일 동안 책장 카드에 NEW 표시 */
+.book-new-badge{position:absolute;right:9px;top:9px;z-index:2;background:#de6654;color:#fff;border-radius:7px;padding:4px 7px;font-size:11px;font-weight:800;letter-spacing:.04em;box-shadow:0 2px 7px #0002;pointer-events:none}
+
+/* 모바일 상단 헤더: 제목과 액션을 각각 한 줄 그룹으로 분리 */
+@media (max-width: 610px) {
+  header { display:flex; flex-direction:column; align-items:stretch; gap:13px; margin-bottom:20px; }
+  header > div:first-child { min-width:0; }
+  header h1 { font-size:clamp(21px,6vw,26px); line-height:1.3; white-space:nowrap; }
+  header .eyebrow { font-size:10px; }
+  header > .flex { display:flex; width:100%; gap:8px; flex-wrap:nowrap; align-items:center; }
+  header #syncBadge { flex:1 1 auto; min-width:0; font-size:12px; white-space:nowrap; }
+  header #logoutButton { flex:0 0 auto; white-space:nowrap; padding:9px 10px; font-size:12px; }
+  header #addTop { flex:0 0 auto; white-space:nowrap; padding:10px 12px; font-size:13px; }
+}
+@media (max-width: 360px) {
+  header #syncBadge {font-size:11px;}
+  header #logoutButton {padding:8px 7px;}
+  header #addTop {padding:9px 8px;font-size:12px;}
+}
+
+/* 휴대폰 검색 UX: 한글 조합 시 검색창 자체는 재생성하지 않음 */
+#main #bookSearch{font-size:18px;min-height:60px;line-height:1.5;padding:15px 18px;border:2px solid #397c64;border-radius:15px;outline-offset:2px;}
+#main #bookSearch:focus{box-shadow:0 0 0 3px rgba(57,124,100,.12);}
+@media(max-width:610px){#main .toolbar{gap:12px}#main #bookSearch{font-size:18px;min-height:66px;padding:17px 16px;width:100%;}#main .toolbar > #addMain,#main .toolbar > #toggleMulti{min-height:48px}}
+</style></head><body><div class="wrap">
+<header><div><div class="eyebrow">MY BOOK LIBRARY</div><h1>📚 나의 독서 서재</h1><div class="muted">나만의 책장과 독서 기록</div></div><div class="flex"><span id="syncBadge" class="muted">연결 대기</span><button class="btn small hidden" id="logoutButton">로그아웃</button><button class="btn primary" id="addTop">＋ 책 등록</button></div></header>
+<div class="stats" id="stats"></div>
+<div class="tabs" id="tabs"><button class="tab on" data-tab="all">전체 책장</button><button class="tab" data-tab="owned">내 소장</button><button class="tab" data-tab="borrowed">빌린 책</button><button class="tab" data-tab="lent">빌려준 책</button><button class="tab" data-tab="wishlist">위시리스트</button><button class="tab" data-tab="report">독서 통계</button><button class="tab" data-tab="settings">설정·백업</button></div>
+<main id="main"></main><div class="footer" id="cloudFooter">🔒 로그인 후 PC와 갤럭시에서 같은 기록을 사용합니다.</div></div>
+<div id="overlay" class="hidden"></div><script>
+'use strict';const STORE='reading-library-v1';let db=load(),tab='all',search='',filter='all',multiMode=false,selectedBookIds=new Set(),bulkRunning=false,scanStream=null,scanTimer=null,zxingReader=null,continuous=false;const $=id=>document.getElementById(id);const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const today=()=>new Date().toLocaleDateString('en-CA');const uid=()=>crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random();function load(){try{let v=JSON.parse(localStorage.getItem(STORE));if(v&&Array.isArray(v.books)&&Array.isArray(v.logs))return v}catch{}return {books:[],logs:[],goal:12}}function save(){if(!cloudUser)throw Error("로그인이 필요해요.");queueSync(JSON.parse(JSON.stringify(db)))}const statusName={planned:'읽기 전',reading:'읽는 중',finished:'완독'};const typeName={owned:'내 소장',borrowed:'빌린 책',lent:'빌려준 책',wishlist:'위시리스트'};const pct=b=>b.pages>0?Math.min(100,Math.round((b.current||0)/b.pages*100)):(b.status==='finished'?100:0);function bookTag(b){return `<span class="tag ${b.type==='owned'?'green':b.type==='borrowed'?'orange':''}">${typeName[b.type]||'기타'}</span><span class="tag">${statusName[b.status]||'읽기 전'}</span>`}function cover(b,cl='cover'){return b.cover?`<img class="${cl}" loading="lazy" referrerpolicy="no-referrer" src="${esc(b.cover)}" alt="${esc(b.title)} 표지" onerror="this.outerHTML='<div class=&quot;${cl} placeholder&quot;>📖</div>'">`:`<div class="${cl} placeholder">📖</div>`}
+function isNewBook(b){
+  if(!b.created || !/^\d{4}-\d{2}-\d{2}$/.test(b.created))return false;
+  const [year,month,day]=b.created.split('-').map(Number);
+  const created=new Date(year,month-1,day);
+  if(created.getFullYear()!==year||created.getMonth()!==month-1||created.getDate()!==day)return false;
+  const todayLocal=new Date();todayLocal.setHours(0,0,0,0);
+  const days=Math.round((Date.UTC(todayLocal.getFullYear(),todayLocal.getMonth(),todayLocal.getDate())-Date.UTC(year,month-1,day))/86400000);
+  return days>=0 && days<30;
+}
+function render(){let now=new Date(),ym=now.toISOString().slice(0,7),finished=db.books.filter(b=>b.status==='finished').length,month=db.logs.filter(l=>l.date.startsWith(ym)),monthPages=month.reduce((n,l)=>n+(+l.pages||0),0);$('stats').innerHTML=[['소장한 책',db.books.filter(b=>b.type==='owned'||b.type==='lent').length+'권'],['빌린 책',db.books.filter(b=>b.type==='borrowed').length+'권'],['완독한 책',finished+'권'],['이번 달 독서',monthPages+'쪽']].map(([l,n])=>`<div class="stat"><div class="label">${l}</div><div class="n">${n}</div></div>`).join('');document.querySelectorAll('.tab').forEach(e=>e.classList.toggle('on',e.dataset.tab===tab));if(tab==='report'){multiMode=false;selectedBookIds.clear();report();return}if(tab==='settings'){multiMode=false;selectedBookIds.clear();settings();return}let list=db.books.filter(b=>(tab==='all'||b.type===tab)&&(filter==='all'||b.status===filter)&&[b.title,b.author,b.isbn,b.publisher,b.barcode].join(' ').toLowerCase().includes(search.toLowerCase()));$('main').innerHTML=`<div class="toolbar"><input class="field" id="bookSearch" placeholder="제목·저자·ISBN·바코드 검색" value="${esc(search)}"><select class="field" id="statusFilter" style="width:auto"><option value="all">독서 상태 전체</option><option value="planned">읽기 전</option><option value="reading">읽는 중</option><option value="finished">완독</option></select><button class="btn" id="addMain">＋ 책 추가</button><button class="btn" id="toggleMulti" type="button">${multiMode?'선택 종료':'☑ 여러 책 선택'}</button><button class="btn" id="randomUnread" type="button">🎲 안 읽은 책 추천</button></div>${multiMode?bulkToolbar(list):''}<div id="bookSearchResults">${bookSearchResultsHTML(list)}</div>`;const searchBox=$('bookSearch');
+searchBox.addEventListener('input',e=>{search=e.target.value;if(!e.isComposing)refreshBookSearchResults();});
+searchBox.addEventListener('compositionstart',()=>{searchBox.dataset.composing='true'});
+searchBox.addEventListener('compositionend',e=>{searchBox.dataset.composing='false';search=e.target.value;refreshBookSearchResults();});
+searchBox.addEventListener('blur',()=>{if(searchBox.dataset.composing!=='true')refreshBookSearchResults()});$('statusFilter').value=filter;$('statusFilter').onchange=e=>{filter=e.target.value;render()};$('addMain').onclick=chooseBookMethod;$('randomUnread').onclick=showUnreadRandom;setupBulkActions(list);bindBookCards()}
+function bookSearchResultsHTML(list){return `<div class="grid">${list.map(b=>`<article class="book ${multiMode&&selectedBookIds.has(b.id)?'selected-book':''}" data-book="${esc(b.id)}" tabindex="0" role="button">${multiMode?`<label class="book-select" title="선택"><input type="checkbox" class="book-check" data-select-book="${esc(b.id)}" ${selectedBookIds.has(b.id)?'checked':''} aria-label="${esc(b.title)} 선택"></label>`:''}${cover(b)}${isNewBook(b)?`<span class="book-new-badge" aria-label="최근 등록한 책">NEW</span>`:''}<div class="booktitle">${esc(b.title)}</div><div class="muted">${esc(b.author||'저자 미상')}</div><div class="tags">${bookTag(b)}</div><div class="progress"><div style="width:${pct(b)}%"></div></div><div class="muted">${b.pages?`${+b.current||0} / ${b.pages}쪽`:`${pct(b)}%`}${b.type==='borrowed'&&b.due?` · 반납 ${esc(b.due)}`:''}</div></article>`).join('')}</div>${list.length?'':'<div class="empty">📖 아직 표시할 책이 없어요.<p>＋ 책 등록을 눌러 첫 책을 추가해 보세요.</p></div>'}`;}
+function bindBookCards(){document.querySelectorAll('[data-book]').forEach(e=>{e.onclick=event=>{if(event.target.closest('.book-select'))return;if(multiMode){toggleSelectedBook(e.dataset.book);return}detail(e.dataset.book)};e.onkeydown=x=>{if(x.key==='Enter'&&x.target===e){if(multiMode)toggleSelectedBook(e.dataset.book);else detail(e.dataset.book)}}})}
+function refreshBookSearchResults(){
+  if(!['all','owned','borrowed','lent','wishlist'].includes(tab))return;
+  const result=document.getElementById('bookSearchResults');if(!result)return;
+  const list=db.books.filter(b=>(tab==='all'||b.type===tab)&&(filter==='all'||b.status===filter)&&[b.title,b.author,b.isbn,b.publisher,b.barcode].join(' ').toLowerCase().includes(search.toLowerCase()));
+  result.innerHTML=bookSearchResultsHTML(list);
+  bindBookCards();
+}
+let lastUnreadRecommendationId=null;
+function showUnreadRandom(){
+ const candidates=db.books.filter(b=>b.status==='planned');
+ if(!candidates.length){
+  modal(`<div class="modalhead"><h2>🎲 안 읽은 책 추천</h2><button class="btn small" id="closeModal">닫기 ✕</button></div><p>📖 읽기 전 상태인 책이 없어요. 책의 독서 상태를 '읽기 전'으로 설정하면 추천받을 수 있어요.</p>`);
+  return;
+ }
+ const alternatives=candidates.length>1?candidates.filter(b=>b.id!==lastUnreadRecommendationId):candidates;
+ const picked=alternatives[Math.floor(Math.random()*alternatives.length)];
+ lastUnreadRecommendationId=picked.id;
+ modal(`<div class="modalhead"><h2>🎲 오늘의 랜덤 추천</h2><button class="btn small" id="closeModal">닫기 ✕</button></div><p class="muted">내 서재에서 아직 읽지 않은 책 ${candidates.length}권 중 골랐어요.</p><div class="detailtop" style="margin:16px 0">${cover(picked,'detailcover')}<div style="flex:1;min-width:0"><h2>${esc(picked.title)}</h2><p class="muted">${esc(picked.author||'저자 미상')}</p><div class="tags">${bookTag(picked)}</div></div></div><div class="flex" style="flex-wrap:wrap;gap:9px"><button class="btn primary" id="rerollUnread" type="button">🎲 다시 뽑기</button><button class="btn" id="openRecommended" type="button">📖 책 상세 보기</button></div>`);
+ $('rerollUnread').onclick=showUnreadRandom;
+ $('openRecommended').onclick=()=>detail(picked.id);
+}
+function bulkToolbar(list){
+ const ids=list.map(b=>b.id),cnt=ids.filter(id=>selectedBookIds.has(id)).length;
+ return `<div class="bulkbar" role="region" aria-label="여러 책 선택 관리"><label style="display:flex;align-items:center;gap:6px;margin:0"><input id="selectVisible" type="checkbox" ${ids.length&&cnt===ids.length?'checked':''}> 현재 목록 전체 선택</label><strong id="selectedCount">선택 ${selectedBookIds.size}권</strong><button type="button" class="btn small" id="clearSelected">선택 해제</button><select class="field" id="bulkType"><option value="">소장 구분 선택</option>${Object.entries(typeName).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select><button class="btn small" id="applyBulkType">소장 구분 변경</button><select class="field" id="bulkStatus"><option value="">독서 상태 선택</option>${Object.entries(statusName).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select><button class="btn small" id="applyBulkStatus">독서 상태 변경</button><button class="btn small" id="exportSelected">📥 선택한 책 엑셀 내보내기</button><button class="btn small danger" id="deleteSelected">🗑 선택한 책 삭제</button><div class="bulk-note">전체 선택은 현재 탭·검색·독서 상태 필터에 보이는 책만 선택합니다. 다른 필터에서 선택한 책도 선택 상태가 유지됩니다. 삭제하면 연결된 독서 기록도 삭제됩니다.</div></div>`
+}
+function toggleSelectedBook(id){if(selectedBookIds.has(id))selectedBookIds.delete(id);else selectedBookIds.add(id);render()}
+function setupBulkActions(list){
+ $('toggleMulti').onclick=()=>{multiMode=!multiMode;selectedBookIds.clear();render()};
+ if(!multiMode)return;
+ $('selectVisible').onchange=e=>{for(const b of list){if(e.target.checked)selectedBookIds.add(b.id);else selectedBookIds.delete(b.id)}render()};
+ $('clearSelected').onclick=()=>{selectedBookIds.clear();render()};
+ $('applyBulkType').onclick=()=>bulkChange('type',$('bulkType').value);
+ $('applyBulkStatus').onclick=()=>bulkChange('status',$('bulkStatus').value);
+ $('exportSelected').onclick=()=>bulkExport();
+ $('deleteSelected').onclick=()=>bulkDelete();
+}
+async function bulkChange(field,value){
+ if(bulkRunning||!value||!selectedBookIds.size)return;
+ if(!cloudUser){alert('로그인 후 사용해 주세요.');return}
+ const n=selectedBookIds.size, label=field==='type'?'소장 구분':'독서 상태';
+ if(!confirm(`선택한 ${n}권의 ${label}을 "${field==='type'?typeName[value]:statusName[value]}"(으)로 변경할까요?`))return;
+ bulkRunning=true;const old=JSON.parse(JSON.stringify(db));
+ try{await pendingSync;for(const b of db.books)if(selectedBookIds.has(b.id))b[field]=value;
+ save();await pendingSync;render();alert(`${n}권의 ${label} 변경이 클라우드에 저장됐어요.`)}
+ catch(e){db=old;render();alert('변경 저장에 실패했어요. 새로고침하기 전에 연결을 확인해 주세요.\n'+e.message)}
+ finally{bulkRunning=false}
+}
+async function bulkExport(){
+ if(bulkRunning||!selectedBookIds.size){alert('책을 먼저 선택해 주세요.');return}
+ bulkRunning=true;
+ try{const x=await getExcelLib(), wb=x.utils.book_new(), selected=db.books.filter(b=>selectedBookIds.has(b.id));
+ const rows=selected.map(b=>({'제목':b.title,'저자':b.author||'','ISBN':b.isbn||'','바코드':b.barcode||'','출판사':b.publisher||'','전체 페이지':b.pages||0,'현재 페이지':b.current||0,'소유 구분':typeName[b.type]||'','독서 상태':statusName[b.status]||'','표지 URL':b.cover||'','별점':b.rating||'','독후감':b.notes||'','대여처/빌려준 사람':b.source||'','반납 예정일':b.due||''}));
+ const sheet=x.utils.json_to_sheet(rows,{header:excelColumns});sheet['!cols']=excelColumns.map(n=>({wch:n==='제목'?36:20}));x.utils.book_append_sheet(wb,sheet,'선택한 책');
+ const logs=db.logs.filter(l=>selectedBookIds.has(l.bookId)).map(l=>({'책 제목':db.books.find(b=>b.id===l.bookId)?.title||'','날짜':l.date,'읽은 페이지':l.pages||0,'읽은 시간(분)':l.minutes||0,'메모':l.note||''}));x.utils.book_append_sheet(wb,x.utils.json_to_sheet(logs.length?logs:[{'책 제목':'','날짜':'','읽은 페이지':'','읽은 시간(분)':'','메모':''}]),'독서 기록');
+ x.writeFile(wb,`독서서재_선택_${selected.length}권_${today()}.xlsx`)
+ }catch(e){alert('엑셀 저장 실패: '+e.message)}finally{bulkRunning=false}
+}
+async function bulkDelete(){
+ if(bulkRunning||!selectedBookIds.size)return;
+ if(!cloudUser){alert('로그인 후 사용해 주세요.');return}
+ const count=selectedBookIds.size;const related=db.logs.filter(l=>selectedBookIds.has(l.bookId)).length;
+ if(!confirm(`선택한 책 ${count}권을 삭제할까요?\n연결된 독서 기록 ${related}개도 함께 삭제됩니다.\n삭제 후 되돌리기 어렵습니다.`))return;
+ const typed=prompt(`정말 삭제하려면 아래 문구를 정확히 입력하세요.\n\n삭제 ${count}권`);
+ if(typed!==`삭제 ${count}권`){alert('삭제가 취소됐어요.');return}
+ bulkRunning=true;const old=JSON.parse(JSON.stringify(db));
+ try{await pendingSync;
+ db.books=db.books.filter(b=>!selectedBookIds.has(b.id));
+ db.logs=db.logs.filter(l=>!selectedBookIds.has(l.bookId));
+ save();await pendingSync;selectedBookIds.clear();render();alert(`${count}권을 삭제하고 Supabase에 반영했어요.`)
+ }catch(e){db=old;render();alert('삭제 동기화에 실패했어요. 기존 기록을 다시 확인해 주세요.\n'+e.message)}finally{bulkRunning=false}
+}
+function modal(inner){$('overlay').className='modalback';$('overlay').innerHTML=`<div class="modal" role="dialog" aria-modal="true">${inner}</div>`;let x=$('closeModal');if(x)x.onclick=closeModal}function closeModal(){stopScan();$('overlay').className='hidden';$('overlay').innerHTML=''}$('overlay').addEventListener('click',e=>{if(e.target===$('overlay'))closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('overlay').className!=='hidden')closeModal()});function chooseBookMethod(){modal(`<div class="registration-choices"><div class="modalhead"><span></span><h2>책 등록하기</h2><button class="btn small" id="closeModal">✕</button></div><button type="button" class="registration-choice" id="regSearch"><span class="regicon">🔎</span><span><strong>검색해서 등록하기</strong><small>책 제목이나 ISBN으로 검색</small></span></button><button type="button" class="registration-choice" id="regScan"><span class="regicon">▥</span><span><strong>바코드로 등록하기</strong><small>ISBN·일반·도서관 바코드 스캔</small></span></button><button type="button" class="registration-choice" id="regManual"><span class="regicon">⌨️</span><span><strong>직접 입력하기</strong><small>표지, 제목, 독서 상태를 직접 입력</small></span></button></div>`);$('regSearch').onclick=()=>editBook(undefined,'search');$('regManual').onclick=()=>editBook(undefined,'manual');$('regScan').onclick=()=>{editBook(undefined,'scan');openScanner(handleScannedCode)}}$('addTop').onclick=chooseBookMethod;$('tabs').onclick=e=>{let v=e.target.closest('[data-tab]');if(v){tab=v.dataset.tab;search='';filter='all';render()}};
+function bookForm(b={}){return `<div class="registration-form"><div class="modalhead"><div><h2>${b.id?'책 수정':'책 등록하기'}</h2><div class="muted">카카오·Google Books·Open Library로 검색 또는 직접 입력</div></div><button class="btn small" id="closeModal">닫기 ✕</button></div><div class="registration-cover"><div id="registrationCoverView">${b.cover?`<img src="${esc(b.cover)}" alt="책 표지" onerror="this.outerHTML='<div class=&quot;registration-cover-placeholder&quot;>📖</div>'">`:'<div class="registration-cover-placeholder">📖</div>'}</div><small>📷 사진을 올리거나 표지 URL을 입력할 수 있어요</small></div><div class="registration-section-title">🔎 책 찾기</div><div class="formrow"><label>ISBN (978/979 등)</label><div class="flex"><input class="field" id="isbn" inputmode="numeric" placeholder="978..." value="${esc(b.isbn||'')}"><button class="btn" id="lookup">검색</button><button class="btn" id="scan">📷 통합 스캔</button></div><label style="margin-top:9px;font-weight:400"><input type="checkbox" id="continuous"> 연속 등록 (저장 후 다음 책 스캔)</label><div class="muted" id="lookupMessage">검색 결과가 없어도 직접 등록할 수 있어요.</div></div><div class="formrow"><label>일반 / 도서관 바코드 번호</label><div class="flex"><input class="field" id="barcode" placeholder="ISBN 이외 바코드" value="${esc(b.barcode||'')}"><button type="button" class="btn" id="scanGeneral">📷 일반 바코드</button></div><div class="muted" id="barcodeMessage">ISBN이 아닌 바코드는 번호를 인식하고 이 책과 연결합니다. 도서관 내부 번호로 책 정보를 자동 조회할 수는 없습니다.</div></div><div class="formrow"><label>책 제목으로 온라인 검색</label><div class="flex"><input class="field" id="titleQuery" placeholder="책 제목을 입력하세요"><button type="button" class="btn" id="searchTitle">제목 검색</button></div><div class="muted" id="titleSearchMessage" aria-live="polite">ISBN 없이도 검색할 수 있어요.</div><div id="titleResults" class="title-results"></div></div><div class="registration-section-title">기본 정보</div><div class="two"><div class="formrow"><label>책 제목 *</label><input class="field" id="title" value="${esc(b.title||'')}"></div><div class="formrow"><label>저자</label><input class="field" id="author" value="${esc(b.author||'')}"></div><div class="formrow"><label>출판사</label><input class="field" id="publisher" value="${esc(b.publisher||'')}"></div><div class="formrow"><label>전체 페이지 수</label><input class="field" id="pages" type="number" min="0" value="${b.pages||''}"></div><div class="formrow"><label>책 구분</label><select class="field" id="type">${Object.entries(typeName).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></div><div class="formrow"><label>독서 상태</label><select class="field" id="status">${Object.entries(statusName).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></div><div class="formrow"><label>현재 읽은 페이지</label><input class="field" id="current" type="number" min="0" value="${b.current||0}"></div><div class="formrow"><label>반납 예정일 (빌린 책)</label><input class="field" id="due" type="date" value="${esc(b.due||'')}"></div><div class="formrow"><label>빌린 곳 / 빌려준 사람</label><input class="field" id="source" placeholder="도서관, 친구 이름 등" value="${esc(b.source||'')}"></div><div class="formrow"><label>📷 표지 사진 직접 등록 (PC·휴대폰)</label><input class="field" id="coverPhotoFile" type="file" accept="image/jpeg,image/png,image/webp" style="max-width:100%"><div class="muted" id="coverPhotoStatus">사진은 Supabase Storage에 저장되어 PC와 휴대폰에서 함께 보여요. JPG·PNG·WebP, 최대 5MB.</div></div><div class="formrow"><label>책 표지 이미지 URL</label><input class="field" id="cover" type="url" value="${esc(b.cover||'')}"><button type="button" class="btn small" id="autoCoverSingle" style="margin-top:8px">🔎 ISBN으로 표지 찾기</button><div class="muted" id="autoCoverSingleStatus">표지를 찾으면 위 주소에 자동 입력됩니다. 저장을 눌러 반영하세요.</div></div></div><div class="formrow"><label>메모 / 독후감</label><textarea class="field" id="notes">${esc(b.notes||'')}</textarea></div><div class="formrow"><label>별점</label><select class="field" id="rating">${[0,1,2,3,4,5].map(n=>`<option value="${n}">${n?n+'점':'미평가'}</option>`).join('')}</select></div><button class="btn primary" id="saveBook" style="width:100%">${b.id?'수정 저장':'✓ 저장하고 내 서재에 등록'}</button></div>`}
+function editBook(id,entryMode){let b=typeof id==='string'?db.books.find(x=>x.id===id):null;b=b||{};modal(bookForm(b));const coverPreview=()=>{const u=$('cover').value.trim();$('registrationCoverView').innerHTML=u?`<img alt="책 표지" src="${esc(u)}" onerror="this.outerHTML='<div class=&quot;registration-cover-placeholder&quot;>📖</div>'">`:'<div class="registration-cover-placeholder">📖</div>'};$('cover').addEventListener('input',coverPreview);$('coverPhotoFile').onchange=()=>{const file=$('coverPhotoFile').files?.[0];const status=$('coverPhotoStatus');if(!file)return;if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>5*1024*1024){status.textContent='JPG·PNG·WebP, 최대 5MB의 사진을 선택해 주세요.';$('coverPhotoFile').value='';return;}status.textContent='사진 선택 완료: '+file.name+' (저장을 누르면 업로드해요)';const reader=new FileReader();reader.onload=()=>{if($('registrationCoverView'))$('registrationCoverView').innerHTML=`<img alt="선택한 사진 미리보기" src="${reader.result}">`};reader.readAsDataURL(file);};if(entryMode==='search'){$('titleQuery').focus()}else if(entryMode==='manual'){$('title').focus()}$('type').value=b.type||'owned';$('status').value=b.status||'planned';$('rating').value=b.rating||0;$('saveBook').onclick=async()=>{let title=$('title').value.trim();if(!title){alert('책 제목을 입력해 주세요.');return}let pages=Math.max(0,parseInt($('pages').value)||0),current=Math.max(0,parseInt($('current').value)||0);let data={id:b.id||uid(),title,author:$('author').value.trim(),publisher:$('publisher').value.trim(),isbn:$('isbn').value.trim(),barcode:$('barcode').value.trim(),type:$('type').value,status:$('status').value,pages,current:pages?Math.min(pages,current):current,due:$('due').value,source:$('source').value.trim(),cover:$('cover').value.trim(),notes:$('notes').value,rating:+$('rating').value,created:b.created||today()};if(data.status==='finished'&&pages)data.current=pages;const photo=$('coverPhotoFile')?.files?.[0];if(photo){const button=$('saveBook');button.disabled=true;button.textContent='📷 사진 저장 중…';try{data.cover=await uploadBookCoverPhoto(photo)}catch(error){alert('사진 저장 실패: '+error.message+'\n책 정보는 아직 저장하지 않았어요.');button.disabled=false;button.textContent=b.id?'수정 저장':'✓ 저장하고 내 서재에 등록';return}}if(b.id)db.books=db.books.map(x=>x.id===b.id?data:x);else db.books.unshift(data);save();let again=!!$('continuous')?.checked;closeModal();render();if(again){editBook();openScanner(code=>{$('isbn').value=code;lookupISBN()});$('continuous').checked=true}};$('lookup').onclick=lookupISBN;$('searchTitle').onclick=searchByTitle;$('titleQuery').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();searchByTitle()}};$('scan').onclick=()=>openScanner(handleScannedCode);$('scanGeneral').onclick=()=>openScanner(handleScannedCode);$('autoCoverSingle').onclick=async()=>{const isbn=$('isbn').value.replace(/[^0-9Xx]/g,'');const status=$('autoCoverSingleStatus');if(!/^(\d{13}|\d{9}[\dXx])$/.test(isbn)){status.textContent='유효한 ISBN 10자리 또는 13자리가 필요합니다.';return}const btn=$('autoCoverSingle');btn.disabled=true;status.textContent='표지를 검색하는 중…';try{const url=await findBookCover(isbn);if(url){$('cover').value=url;$('cover').dispatchEvent(new Event('input'));status.textContent='✅ 표지를 찾았어요. 아래 수정 저장 버튼을 눌러주세요.'}else status.textContent='찾지 못했어요. 표지 주소를 직접 입력할 수 있어요.'}catch(e){status.textContent='검색 오류: '+e.message}finally{btn.disabled=false}};}
+async function lookupISBN(){
+ const isbn=$('isbn').value.replace(/[^0-9Xx]/g,'').toUpperCase();
+ const msg=$('lookupMessage');
+ if(!/^(\d{13}|\d{9}[\dX])$/.test(isbn)){msg.textContent='ISBN은 숫자 13자리 또는 ISBN-10 10자리여야 해요. 바코드의 978/979부터 확인해 주세요.';return}
+ const button=$('lookup');button.disabled=true;msg.textContent='ISBN으로 도서 정보를 검색하는 중…';
+ try{
+  const info=await fetchMetadata(isbn);
+  if(!info){msg.textContent='해당 ISBN의 책 정보를 찾지 못했어요. 한국 도서는 외부 도서 DB에 없을 수 있어요. 제목·저자를 직접 입력하거나 표지 URL을 넣을 수 있어요.';return}
+  for(const k of ['title','author','publisher','pages','cover']){
+   if(info[k] && !$(k).value.trim())$(k).value=String(info[k]);
+  }
+  msg.textContent='✅ '+info.source+'에서 책 정보를 찾았어요. 표지가 없으면 표지 URL을 직접 넣을 수 있어요.';
+ }catch(e){msg.textContent='검색 연결 오류: '+e.message+' (인터넷 연결 또는 외부 도서 서비스 이용 제한을 확인해 주세요.)';}
+ finally{button.disabled=false}
+}
+async function fetchBookJSON(url){
+ const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),9500);
+ try{const res=await fetch(url,{signal:controller.signal,headers:{Accept:'application/json'}});
+  if(!res.ok)throw Error('HTTP '+res.status);
+  return await res.json();
+ }finally{clearTimeout(timer)}
+}
+async function fetchKakaoBooks(query,type){
+ if(!cloudClient||!cloudUser)throw Error('카카오 도서 검색은 Supabase 로그인이 필요해요.');
+ const {data:sessionData,error:sessionError}=await cloudClient.auth.getSession();
+ if(sessionError||!sessionData?.session?.access_token)throw Error('로그인 세션이 만료됐어요. 다시 로그인해 주세요.');
+ const {data,error}=await cloudClient.functions.invoke('kakao-book-search',{body:{query,type}});
+ if(error){
+  let details='';
+  try{if(error.context&&typeof error.context.json==='function'){const body=await error.context.json();details=body.error||body.message||'';}}catch{}
+  throw Error(details||error.message||'카카오 검색 함수 호출에 실패했어요.');
+ }
+ if(data?.error)throw Error(data.error);
+ return (data?.books||[]).map(b=>{
+  const codes=String(b.isbn||'').split(/\s+/).filter(Boolean);
+  const isbn=codes.find(x=>/^97[89]\d{10}$/.test(x))||codes[0]||'';
+  return {title:b.title||'',author:(b.authors||[]).join(', '),publisher:b.publisher||'',pages:'',cover:String(b.thumbnail||'').replace(/^http:/,'https:'),isbn,source:'카카오 책 검색'};
+ }).filter(b=>b.title);
+}
+async function fetchMetadata(isbn){
+ const code=String(isbn).toUpperCase();const errors=[];
+ try{
+  const books=await fetchKakaoBooks(code,'isbn');
+  const match=books.find(x=>String(x.isbn).replace(/[^0-9X]/gi,'')===code)||books[0];
+  if(match)return match;
+ }catch(e){errors.push('카카오: '+e.message)}
+ // Google Books: ISBN query (search result may omit cover).
+ try{
+  const data=await fetchBookJSON('https://www.googleapis.com/books/v1/volumes?q='+encodeURIComponent('isbn:'+code)+'&maxResults=10');
+  const items=data.items||[];
+  const match=items.find(item=>(item.volumeInfo?.industryIdentifiers||[]).some(x=>String(x.identifier||'').replace(/[^0-9X]/gi,'').toUpperCase()===code))||items[0];
+  const g=match?.volumeInfo;
+  if(g?.title){return {title:g.title,author:(g.authors||[]).join(', '),publisher:g.publisher||'',pages:g.pageCount||'',cover:(g.imageLinks?.thumbnail||g.imageLinks?.smallThumbnail||'').replace(/^http:/,'https:'),source:'Google Books'}};
+ }catch(e){errors.push('Google Books: '+e.message)}
+ // Open Library ISBN endpoint. Some records have no authors, so look them up separately.
+ try{
+  const o=await fetchBookJSON('https://openlibrary.org/isbn/'+encodeURIComponent(code)+'.json');
+  if(o?.title){let author='';
+   if(o.authors?.length){const names=await Promise.all(o.authors.slice(0,3).map(async x=>{try{const a=await fetchBookJSON('https://openlibrary.org'+x.key+'.json');return a.name||''}catch{return ''}}));author=names.filter(Boolean).join(', ')}
+   return {title:o.title,author,publisher:o.publishers?.[0]||'',pages:o.number_of_pages||'',cover:o.covers?.[0]?`https://covers.openlibrary.org/b/id/${o.covers[0]}-M.jpg`:'',source:'Open Library'};
+  }
+ }catch(e){errors.push('Open Library ISBN: '+e.message)}
+ // Fallback to indexed ISBN search if the direct endpoint has no edition.
+ try{
+  const o=await fetchBookJSON('https://openlibrary.org/search.json?isbn='+encodeURIComponent(code)+'&limit=5&fields=title,author_name,publisher,number_of_pages_median,cover_i,isbn');
+  const match=(o.docs||[]).find(d=>(d.isbn||[]).includes(code))||o.docs?.[0];
+  if(match?.title)return {title:match.title,author:(match.author_name||[]).slice(0,3).join(', '),publisher:match.publisher?.[0]||'',pages:match.number_of_pages_median||'',cover:match.cover_i?`https://covers.openlibrary.org/b/id/${match.cover_i}-M.jpg`:'',source:'Open Library 검색'};
+ }catch(e){errors.push('Open Library 검색: '+e.message)}
+ if(errors.length===3)throw Error(errors.join(' / '));
+ return null;
+}
+function setBookFieldsFromSearch(info){
+ for(const k of ['title','author','publisher','pages','cover']){
+  if(info[k] && $(k))$(k).value=String(info[k]);
+ }
+ if(info.isbn && $('isbn'))$('isbn').value=info.isbn;
+}
+async function searchByTitle(){
+ const q=$('titleQuery').value.trim(),status=$('titleSearchMessage'),results=$('titleResults'),btn=$('searchTitle');
+ if(q.length<2){status.textContent='제목을 두 글자 이상 입력해 주세요.';return}
+ btn.disabled=true;status.textContent='책 제목으로 검색 중…';results.innerHTML='';
+ try{
+  let found=[],errors=[];
+  try{found=await fetchKakaoBooks(q,'title')}catch(e){errors.push('카카오: '+e.message)}
+  if(found.length<5)try{
+   const data=await fetchBookJSON('https://www.googleapis.com/books/v1/volumes?q='+encodeURIComponent('intitle:'+q)+'&maxResults=15');
+   found.push(...(data.items||[]).map(it=>{let g=it.volumeInfo||{};return {title:g.title||'',author:(g.authors||[]).join(', '),publisher:g.publisher||'',pages:g.pageCount||'',cover:(g.imageLinks?.thumbnail||g.imageLinks?.smallThumbnail||'').replace(/^http:/,'https:'),isbn:(g.industryIdentifiers||[]).find(x=>x.type==='ISBN_13')?.identifier||(g.industryIdentifiers||[])[0]?.identifier||'',source:'Google Books'}}).filter(x=>x.title));
+  }catch(e){errors.push('Google Books: '+e.message)}
+  if(found.length<5){
+   try{
+    const data=await fetchBookJSON('https://openlibrary.org/search.json?title='+encodeURIComponent(q)+'&limit=15&fields=title,author_name,publisher,number_of_pages_median,cover_i,isbn');
+    found.push(...(data.docs||[]).map(g=>({title:g.title||'',author:(g.author_name||[]).slice(0,3).join(', '),publisher:g.publisher?.[0]||'',pages:g.number_of_pages_median||'',cover:g.cover_i?'https://covers.openlibrary.org/b/id/'+encodeURIComponent(g.cover_i)+'-M.jpg':'',isbn:(g.isbn||[]).find(x=>/^97[89]\d{10}$/.test(x))||(g.isbn||[])[0]||'',source:'Open Library'})).filter(x=>x.title));
+   }catch(e){errors.push('Open Library: '+e.message)}
+  }
+  const used=new Set();found=found.filter(x=>{const key=(x.isbn||x.title+'|'+x.author).toLowerCase();if(used.has(key))return false;used.add(key);return true}).slice(0,20);
+  if(!found.length){status.textContent='검색 결과가 없어요. 제목을 줄여 검색하거나 직접 입력해 주세요.'+(errors.length?' ('+errors.join(' / ')+')':'');return}
+  status.textContent=found.length+'개 검색 결과 · 원하는 책을 선택해 주세요.';
+  results.innerHTML=found.map((b,i)=>`<button type="button" class="title-result" data-result="${i}">${b.cover?`<img src="${esc(b.cover)}" alt="" loading="lazy" onerror="this.style.display='none'">`:'<span class="result-placeholder">📕</span>'}<span class="result-body"><strong>${esc(b.title)}</strong><small>${esc(b.author||'저자 미상')} · ${esc(b.publisher||b.source)}</small><small>${esc(b.isbn||'ISBN 정보 없음')}</small></span><span>선택</span></button>`).join('');
+  results.querySelectorAll('[data-result]').forEach(el=>el.onclick=()=>{const b=found[Number(el.dataset.result)];setBookFieldsFromSearch(b);status.textContent='✅ '+b.source+' 결과를 입력했어요. 내용을 확인하고 저장해 주세요.';results.innerHTML=''});
+ }catch(e){status.textContent='검색 오류: '+e.message}
+ finally{btn.disabled=false}
+}
+function detail(id){let b=db.books.find(x=>x.id===id);if(!b)return;let logs=db.logs.filter(l=>l.bookId===id).sort((a,z)=>z.date.localeCompare(a.date));modal(`<div class="modalhead"><h2>책 상세 정보</h2><button class="btn small" id="closeModal">닫기 ✕</button></div><div class="detailtop">${cover(b,'detailcover')}<div style="flex:1;min-width:0"><h2>${esc(b.title)}</h2><div class="muted">${esc(b.author||'저자 미상')}</div><div class="tags">${bookTag(b)}</div><div class="muted">${esc(b.publisher||'')} ${b.isbn?`· ISBN ${esc(b.isbn)}`:''}${b.barcode?` · 바코드 ${esc(b.barcode)}`:''}</div>${b.source?`<p class="muted">${b.type==='lent'?'빌려준 사람':'대여처'}: ${esc(b.source)}</p>`:''}${b.due?`<p class="muted">반납 예정일: ${esc(b.due)}</p>`:''}${b.rating?`<p>⭐ ${'★'.repeat(b.rating)}${'☆'.repeat(5-b.rating)}</p>`:''}</div></div><div class="section"><div class="flex between"><b>독서 진행률</b><b>${pct(b)}%</b></div><div class="progress" style="height:11px"><div style="width:${pct(b)}%"></div></div><div class="muted">${b.current||0} / ${b.pages||'?'} 쪽</div></div><div class="stickyactions"><button class="btn primary" id="logAdd">＋ 독서 기록</button><button class="btn" id="editThis">수정</button><button class="btn danger" id="deleteThis">삭제</button></div>${b.notes?`<div class="section"><h3>독후감 · 메모</h3><div style="white-space:pre-wrap">${esc(b.notes)}</div></div>`:''}<hr class="line"><h3>읽은 기록</h3>${logs.length?logs.map(l=>`<div class="record"><b>${esc(l.date)}</b> · ${+l.pages||0}쪽 · ${+l.minutes||0}분${l.note?`<div>${esc(l.note)}</div>`:''}<button class="btn small danger" data-delete-log="${esc(l.id)}">삭제</button></div>`).join(''):'<div class="muted">아직 기록이 없어요.</div>'}`);$('editThis').onclick=()=>editBook(id);$('logAdd').onclick=()=>logForm(id);$('deleteThis').onclick=()=>{if(confirm('이 책과 독서 기록을 모두 삭제할까요?')){db.books=db.books.filter(x=>x.id!==id);db.logs=db.logs.filter(x=>x.bookId!==id);save();closeModal();render()}};document.querySelectorAll('[data-delete-log]').forEach(e=>e.onclick=()=>{if(confirm('이 독서 기록을 삭제할까요?')){db.logs=db.logs.filter(x=>x.id!==e.dataset.deleteLog);save();detail(id);renderStatsOnly()}})}function renderStatsOnly(){let now=tab;render();tab=now}
+function logForm(id){let b=db.books.find(x=>x.id===id);modal(`<div class="modalhead"><div><h2>📖 독서 기록</h2><div class="muted">${esc(b.title)}</div></div><button class="btn small" id="closeModal">닫기 ✕</button></div><div class="formrow"><label>읽은 날짜</label><input class="field" id="logDate" type="date" value="${today()}"></div><div class="two"><div class="formrow"><label>오늘 읽은 페이지 수</label><input class="field" id="logPages" type="number" min="0" value="0"></div><div class="formrow"><label>독서 시간 (분)</label><input class="field" id="logMinutes" type="number" min="0" value="0"></div></div><div class="formrow"><label>짧은 메모</label><textarea class="field" id="logNote" placeholder="오늘 기억에 남는 내용"></textarea></div><button class="btn primary" id="saveLog" style="width:100%">기록 저장</button>`);$('saveLog').onclick=()=>{let date=$('logDate').value,pages=+$('logPages').value,minutes=+$('logMinutes').value;if(!date||!Number.isFinite(pages)||pages<0||!Number.isInteger(pages)||!Number.isFinite(minutes)||minutes<0){alert('날짜와 0 이상의 올바른 숫자를 입력해 주세요.');return}db.logs.push({id:uid(),bookId:id,date,pages,minutes,note:$('logNote').value});b.current=(b.current||0)+pages;if(b.pages&&b.current>=b.pages){b.current=b.pages;b.status='finished'}else if(pages>0&&b.status==='planned')b.status='reading';save();render();detail(id)}}
+function report(){let month=today().slice(0,7),logs=db.logs.filter(x=>x.date.startsWith(month)),pages=logs.reduce((n,x)=>n+x.pages,0),minutes=logs.reduce((n,x)=>n+x.minutes,0),finished=db.books.filter(b=>b.status==='finished').length;let days=Array.from({length:7},(_,i)=>{let d=new Date();d.setDate(d.getDate()-6+i);let key=d.toLocaleDateString('en-CA');return {key,day:(d.getMonth()+1)+'/'+d.getDate(),pages:db.logs.filter(l=>l.date===key).reduce((n,l)=>n+l.pages,0)}}),max=Math.max(1,...days.map(d=>d.pages));$('main').innerHTML=`<div class="two"><div class="panel"><h2>이번 달 독서</h2><div class="stats" style="grid-template-columns:1fr 1fr"><div><div class="muted">읽은 페이지</div><h1>${pages}쪽</h1></div><div><div class="muted">독서 시간</div><h1>${Math.floor(minutes/60)}시간 ${minutes%60}분</h1></div></div></div><div class="panel"><h2>완독 목표</h2><div class="flex between"><span>완독 ${finished}권 / 목표 ${db.goal}권</span><b>${db.goal?Math.round(finished/db.goal*100):0}%</b></div><div class="progress" style="height:12px"><div style="width:${db.goal?Math.min(100,finished/db.goal*100):0}%"></div></div><div class="muted">현재 등록된 책의 완독 수 기준</div></div></div><div class="panel section"><h2>최근 7일 읽은 페이지</h2><div class="chart">${days.map(d=>`<div class="barcol"><span class="barvalue">${d.pages||''}</span><div class="bar" style="height:${d.pages/max*90}%"></div><div class="barlabel">${d.day}</div></div>`).join('')}</div><div style="height:15px"></div></div><div class="panel section"><h2>책별 독서 현황</h2>${db.books.length?db.books.map(b=>`<div class="record"><b>${esc(b.title)}</b> <span class="muted">${esc(statusName[b.status])}</span><div class="progress"><div style="width:${pct(b)}%"></div></div></div>`).join(''):'<div class="empty">등록된 책이 없어요.</div>'}</div>`}
+function settings(){$('main').innerHTML=`<div class="panel"><h2>목표 설정</h2><div class="formrow"><label>완독 목표 (권)</label><div class="flex"><input class="field" id="goal" type="number" min="1" value="${db.goal}"><button class="btn primary" id="saveGoal">저장</button></div></div><hr class="line"><h2>🖼️ 책 표지 자동 채우기</h2><p class="muted">기존 표지는 절대 바꾸지 않고, 표지가 없는 책 중 ISBN이 있는 책을 카카오 책 검색을 먼저 이용하고, 찾지 못하면 Google Books·Open Library에서 찾아 저장합니다. 기존 책·독서 기록은 삭제하거나 덮어쓰지 않습니다. 일부 책은 표지를 찾지 못할 수 있어요.</p><button class="btn primary" id="fillCovers">🔎 표지 없는 책 자동 검색</button><p id="coverBatchStatus" class="muted" aria-live="polite">기존 표지는 그대로 유지해요.</p><hr class="line"><h2>엑셀 가져오기 · 내보내기</h2><p class="muted">일반적인 XLSX 파일을 지원합니다. 기존 도서는 유지하고 ISBN·바코드 또는 제목·저자로 중복을 확인합니다. 저장 전에 건수를 미리 확인할 수 있어요.</p><div class="stickyactions"><button class="btn primary" id="exportExcel">📥 엑셀 내보내기</button><button class="btn" id="importExcel">📤 엑셀 가져오기</button><input class="hidden" type="file" id="excelFile" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"></div><p class="muted" id="excelStatus" aria-live="polite">표준 엑셀 파일은 제목 열이 필요합니다. 내보내기에는 책 목록과 독서 기록이 포함됩니다.</p><hr class="line"><h2>기록 백업 및 복원</h2><p class="muted">로그인된 Supabase 계정으로 기기 간 독서 기록이 동기화됩니다. JSON 백업을 별도로 보관하면 더욱 안전합니다.</p><div class="stickyactions"><button class="btn primary" id="export">📥 JSON 백업 다운로드</button><button class="btn" id="importBtn">📤 백업 불러오기</button><input id="importFile" class="hidden" type="file" accept=".json,application/json"></div><p class="alert">백업을 불러오면 현재 연결된 계정의 책과 기록이 변경됩니다. 먼저 JSON 백업을 다운로드하세요.</p></div><div class="panel section"><h2>사용 안내</h2><p>① 책 등록 → ISBN·책 제목 검색 또는 바코드 스캔</p><p>② 소장/빌림/빌려줌/위시리스트 선택</p><p>③ 책 선택 → 독서 기록 및 독후감 작성</p><p>④ 통계 화면에서 달성률 확인</p><p class="muted">카메라 스캔은 HTTPS 또는 localhost 환경에서 작동합니다. file://로 열면 브라우저 보안 설정에 따라 카메라 사용이 제한될 수 있습니다. 도서 정보 검색에는 인터넷이 필요합니다.</p></div>`;$('fillCovers').onclick=fillMissingCovers;$('exportExcel').onclick=exportLibraryExcel;$('importExcel').onclick=()=>$('excelFile').click();$('excelFile').onchange=importLibraryExcel;$('saveGoal').onclick=()=>{db.goal=Math.max(1,parseInt($('goal').value)||1);save();render()};$('export').onclick=()=>{let blob=new Blob([JSON.stringify({...db,exportedAt:new Date().toISOString()},null,2)],{type:'application/json'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='독서서재_백업_'+today()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),2000)};$('importBtn').onclick=()=>$('importFile').click();$('importFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let v=JSON.parse(await f.text());if(!Array.isArray(v.books)||!Array.isArray(v.logs)||v.books.some(x=>typeof x.title!=='string'))throw Error('형식 오류');if(!confirm('현재 기록을 백업 파일의 내용으로 덮어쓸까요?'))return;db={books:v.books,logs:v.logs,goal:Math.max(1,+v.goal||12)};save();render();alert('복원이 완료되었습니다.')}catch{alert('올바른 독서 서재 JSON 백업 파일이 아닙니다.')}}}
+
+function handleScannedCode(raw){
+ const code=String(raw||'').trim();
+ if(/^97[89]\d{10}$/.test(code)){$('isbn').value=code;lookupISBN();return}
+ const existing=db.books.find(b=>String(b.barcode||'').trim()===code);
+ if(existing){closeModal();detail(existing.id);return}
+ $('barcode').value=code;
+ $('barcodeMessage').textContent='✅ '+code+' 인식 완료. 책 제목을 입력하고 저장하면 다음 스캔부터 이 책을 찾을 수 있어요.';
+}
+function stopScan(){if(scanTimer){clearTimeout(scanTimer);scanTimer=null}if(zxingReader){try{zxingReader.reset()}catch{}zxingReader=null}if(scanStream){scanStream.getTracks().forEach(t=>t.stop());scanStream=null}}async function openScanner(onCode){
+ if(!window.isSecureContext){alert('카메라를 사용하려면 HTTPS 주소 또는 localhost가 필요해요. ISBN을 직접 입력해도 됩니다.');return}
+ const parent=$('overlay').querySelector('.modal');
+ const original=Array.from(parent.childNodes);
+ original.forEach(node=>{if(node.nodeType===1)node.style.display='none'});
+ const scanner=document.createElement('div');scanner.innerHTML=`<div class="modalhead"><h2>📷 책 바코드 스캔</h2><button class="btn small" id="cancelScan">돌아가기 ✕</button></div><video id="camera" autoplay playsinline muted></video><p class="muted" id="scanMsg">책의 ISBN·일반 상품·도서관 바코드를 카메라 가운데에 놓아주세요.</p>`;parent.appendChild(scanner);
+ let active=true;
+ const back=()=>{if(!active)return;active=false;stopScan();scanner.remove();original.forEach(node=>{if(node.nodeType===1)node.style.display=''})};
+ $('cancelScan').onclick=back;
+ try{
+   scanStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}},audio:false});
+   if(!active){stopScan();return}
+   const video=$('camera');video.srcObject=scanStream;await video.play();
+   const accept=value=>{const code=String(value||'').trim();if(active&&code.length>=4&&code.length<=64){back();onCode(code)}};
+   if('BarcodeDetector' in window){
+     const supported=await BarcodeDetector.getSupportedFormats();
+     const formats=['ean_13','ean_8','upc_a','upc_e','code_128','code_39','codabar','itf'].filter(f=>supported.includes(f));
+     if(!formats.length)throw Error('지원되지 않는 바코드 형식');
+     const detector=new BarcodeDetector({formats});
+     const loop=async()=>{if(!active)return;try{(await detector.detect(video)).forEach(v=>accept(v.rawValue))}catch{}if(active)scanTimer=setTimeout(loop,250)};loop();
+   }else{
+     let script=document.getElementById('zxingLib');
+     if(!script){script=document.createElement('script');script.id='zxingLib';script.src='https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js';document.head.appendChild(script);await new Promise((res,rej)=>{script.onload=res;script.onerror=rej})}
+     if(!window.ZXing)throw Error('스캐너 라이브러리를 불러오지 못했습니다');
+     zxingReader=new ZXing.BrowserMultiFormatReader();
+     zxingReader.decodeFromVideoElementContinuously(video,result=>{if(result)accept(result.getText())});
+   }
+ }catch(err){if(active)$('scanMsg').textContent='카메라 스캔을 사용할 수 없어요. 권한 또는 HTTPS 연결을 확인하고 바코드 번호를 직접 입력해 주세요.';stopScan()}
+}
+
+
+
+/* XLSX import/export: user-initiated, previewed, append only. */
+async function getExcelLib(){
+ if(window.XLSX)return window.XLSX;
+ if(!document.getElementById('xlsxLib')){
+  const s=document.createElement('script');s.id='xlsxLib';s.src='https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';document.head.appendChild(s);
+ }
+ for(let i=0;i<120;i++){if(window.XLSX)return window.XLSX;await new Promise(r=>setTimeout(r,100))}
+ throw Error('엑셀 라이브러리를 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.');
+}
+const excelColumns=['제목','저자','ISBN','바코드','출판사','전체 페이지','현재 페이지','소유 구분','독서 상태','표지 URL','별점','독후감','대여처/빌려준 사람','반납 예정일'];
+function exportLibraryExcel(){
+ (async()=>{
+  const status=$('excelStatus');status.textContent='엑셀 파일 생성 중…';
+  try{
+   const x=await getExcelLib();const wb=x.utils.book_new();
+   const rows=db.books.map(b=>({'제목':b.title,'저자':b.author||'','ISBN':b.isbn||'','바코드':b.barcode||'','출판사':b.publisher||'','전체 페이지':b.pages||0,'현재 페이지':b.current||0,'소유 구분':typeName[b.type]||'내 소장','독서 상태':statusName[b.status]||'읽기 전','표지 URL':b.cover||'','별점':b.rating||'','독후감':b.notes||'','대여처/빌려준 사람':b.source||'','반납 예정일':b.due||''}));
+   const sheet=x.utils.json_to_sheet(rows,{header:excelColumns});sheet['!cols']=excelColumns.map(n=>({wch:n==='독후감'?40:n==='제목'?35:20}));x.utils.book_append_sheet(wb,sheet,'책 목록');
+   x.utils.book_append_sheet(wb,x.utils.json_to_sheet(db.logs.map(l=>({'책 제목':db.books.find(b=>b.id===l.bookId)?.title||'','ISBN':db.books.find(b=>b.id===l.bookId)?.isbn||'','날짜':l.date,'읽은 페이지':l.pages||0,'읽은 시간(분)':l.minutes||0,'메모':l.note||''}))), '독서 기록');
+   x.writeFile(wb,'독서서재_'+today()+'.xlsx');status.textContent='✅ 엑셀 파일을 생성했습니다.';
+  }catch(e){status.textContent='엑셀 내보내기 실패: '+e.message}
+ })();
+}
+function excelCell(row,keys){for(const k of keys){const v=row[k];if(v!==undefined&&v!==null&&String(v).trim()!=='')return String(v).trim()}return ''}
+function excelType(v){const t=String(v||'').trim().toLowerCase();return ({'내 소장':'owned','소장':'owned','보유':'owned','owned':'owned','빌린 책':'borrowed','대여':'borrowed','borrowed':'borrowed','빌려준 책':'lent','lent':'lent','위시리스트':'wishlist','wishlist':'wishlist'})[t]||'owned'}
+function excelStatus(v){const t=String(v||'').trim().toLowerCase();return ({'읽기 전':'planned','읽을 예정':'planned','planned':'planned','읽는 중':'reading','reading':'reading','완독':'finished','읽음':'finished','finished':'finished'})[t]||'planned'}
+function excelKey(b){const isbn=String(b.isbn||'').replace(/[^0-9Xx]/g,'').toUpperCase();if(isbn)return 'i:'+isbn;if(b.barcode)return 'b:'+String(b.barcode).trim();return 't:'+String(b.title||'').trim().toLowerCase().replace(/\s+/g,'')+'|'+String(b.author||'').trim().toLowerCase().replace(/\s+/g,'')}
+async function importLibraryExcel(e){
+ const input=e.target, file=input.files?.[0], status=$('excelStatus');if(!file)return;input.value='';
+ try{
+  status.textContent='엑셀 파일 분석 중…';const x=await getExcelLib();const wb=x.read(await file.arrayBuffer(),{type:'array',cellDates:true});
+  const ws=wb.Sheets['책 목록']||wb.Sheets[wb.SheetNames[0]];if(!ws)throw Error('엑셀 시트를 찾을 수 없어요.');
+  const rows=x.utils.sheet_to_json(ws,{defval:'',raw:false});if(!rows.length)throw Error('책 목록이 비어 있어요.');
+  const normalize=r=>Object.fromEntries(Object.entries(r).map(([k,v])=>[k.trim(),v]));
+  let invalid=0,dupes=0;const seen=new Set(db.books.map(excelKey));const incoming=[];
+  for(const raw of rows){const r=normalize(raw),title=excelCell(r,['제목','책 제목','도서명','Title','title','Book Title','book_title']);if(!title){invalid++;continue}
+   const isbn=excelCell(r,['ISBN','ISBN13','ISBN-13','isbn','isbn13','ISBN13자리']);const author=excelCell(r,['저자','작가','Author','author']);
+   const num=(v)=>Math.max(0,Math.floor(Number(String(v||'0').replace(/,/g,''))||0));
+   const pages=num(excelCell(r,['전체 페이지','페이지 수','페이지','page_count','Pages','pages']));const current=num(excelCell(r,['현재 페이지','읽은 페이지','current_page']));
+   const b={id:uid(),title,author,isbn,barcode:excelCell(r,['바코드','barcode','Barcode','도서관 바코드']),publisher:excelCell(r,['출판사','Publisher','publisher']),pages,current:pages?Math.min(current,pages):current,type:excelType(excelCell(r,['소유 구분','소장 구분','ownership'])),status:excelStatus(excelCell(r,['독서 상태','상태','reading_status','status'])),cover:excelCell(r,['표지 URL','표지','cover_url']),rating:Math.min(5,num(excelCell(r,['별점','rating']))),notes:excelCell(r,['독후감','메모','review','notes']),source:excelCell(r,['대여처/빌려준 사람','대여처','source']),due:excelCell(r,['반납 예정일','due_date']),created:today()};
+   const k=excelKey(b);if(seen.has(k)){dupes++;continue}seen.add(k);incoming.push(b);
+  }
+  if(!incoming.length){status.textContent=`추가할 책이 없어요. 중복 ${dupes}권 · 제목 없는 행 ${invalid}개`;return}
+  const sample=incoming.slice(0,5).map(b=>'• '+b.title).join('\n');
+  if(!confirm(`엑셀 ${rows.length}행 중 새 책 ${incoming.length}권을 등록할까요?\n중복 제외 ${dupes}권 · 제목 없음 ${invalid}행\n\n${sample}\n\n기존 책과 독서 기록은 유지됩니다. 독서 기록 시트는 가져오지 않습니다.`)){status.textContent='가져오기를 취소했습니다.';return}
+  status.textContent=`새 책 ${incoming.length}권을 클라우드에 저장 중…`;
+  // Write directly to Supabase in batches and reread server state; avoids replacing/deleting existing records.
+  if(!cloudClient||!cloudUser)throw Error('먼저 로그인해야 합니다.');
+  await pendingSync.catch(()=>{});
+  let count=0;
+  for(let i=0;i<incoming.length;i+=50){const part=incoming.slice(i,i+50);const {error}=await cloudClient.from('books').insert(part.map(toBook));if(error)throw error;count+=part.length;status.textContent=`클라우드에 저장 중… ${count}/${incoming.length}권`}
+  await enterCloud();tab='all';render();
+  // enterCloud re-renders settings away, so feedback is an alert.
+  alert(`엑셀 가져오기 완료: ${count}권 추가했습니다. 기존 책과 기록은 유지했습니다.`);
+ }catch(err){status.textContent='엑셀 가져오기 오류: '+err.message+' · 일부 저장되었을 수 있으니 다시 가져오기 전 전체 책장을 확인하세요.'}
+}
+
+/* Personal Supabase sync bridge. Public/publishable key only; no privileged keys. */
+let cloudClient=null,cloudUser=null,serverShadow={books:[],logs:[],goal:12},pendingSync=Promise.resolve(),cloudBusy=false;
+const CLOUD_CONF='my-reading-library-supabase-config-v1';
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const clone=x=>JSON.parse(JSON.stringify(x));
+const syncEl=()=>document.getElementById('syncBadge');
+const setSync=(t,bad=false)=>{if(syncEl()){syncEl().textContent=t;syncEl().style.color=bad?'#b74d55':'#397c64'}};
+function gate(html){document.getElementById('cloudGate')?.remove();const el=document.createElement('div');el.id='cloudGate';el.style='position:fixed;inset:0;z-index:100;background:#f8f7f3;display:flex;align-items:center;justify-content:center;padding:18px;overflow:auto';el.innerHTML='<div class="panel" style="width:min(100%,480px);box-shadow:0 12px 48px #14382219"><div class="eyebrow">MY BOOK LIBRARY · PRIVATE</div><h1 style="font-size:24px;margin:10px 0">🔒 나의 독서 서재</h1>'+html+'</div>';document.body.append(el);return el}
+async function libraryClient(){if(window.supabase?.createClient)return window.supabase;if(!document.getElementById('supabaseLoader')){let el=document.createElement('script');el.id='supabaseLoader';el.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';document.head.append(el)}let i=0;while(!window.supabase?.createClient&&i++<120)await sleep(100);if(!window.supabase?.createClient)throw Error('Supabase 라이브러리를 불러오지 못했어요. 인터넷 연결을 확인해 주세요.');return window.supabase}
+function configScreen(error=''){const el=gate('<p class="muted">처음 한 번만 Supabase의 <b>Project URL</b>과 <b>Publishable key</b>를 입력하면 돼요. 두 값은 이 브라우저에만 보관합니다.</p><div class="formrow"><label>Project URL</label><input class="field" id="cloudUrl" placeholder="https://xxxxx.supabase.co" autocomplete="off"></div><div class="formrow"><label>Publishable key (또는 legacy anon key)</label><input class="field" id="cloudKey" placeholder="sb_publishable_..." autocomplete="off"></div><p class="alert">데이터베이스 비밀번호, secret key, service_role key는 절대 입력하지 마세요.</p><p id="cloudErr" style="color:#b74d55;font-size:13px">'+esc(error)+'</p><button id="connectCloud" class="btn primary" style="width:100%">연결하기</button>');el.querySelector('#connectCloud').onclick=async()=>{let url=el.querySelector('#cloudUrl').value.trim().replace(/\/$/,'');let key=el.querySelector('#cloudKey').value.trim();if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(url)||!key||/service_role|sb_secret_/.test(key)){el.querySelector('#cloudErr').textContent='Supabase URL과 공개용 키만 입력해 주세요.';return}localStorage.setItem(CLOUD_CONF,JSON.stringify({url,key}));await startCloud()}}
+async function startCloud(){const conf=JSON.parse(localStorage.getItem(CLOUD_CONF)||'null');if(!conf){configScreen();return}gate('<p class="muted">Supabase에 연결하는 중…</p>');try{const lib=await libraryClient();cloudClient=lib.createClient(conf.url,conf.key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});const {data,error}=await cloudClient.auth.getUser();if(!error&&data?.user){cloudUser=data.user;await enterCloud()}else{cloudUser=null;loginScreen()}}catch(err){cloudUser=null;configScreen('연결 실패: '+err.message)}}
+function loginScreen(error=''){const el=gate('<p class="muted">Supabase Authentication → Users에서 만든 계정으로 로그인하세요. 이 화면에서는 신규 회원가입을 할 수 없어요.</p><form id="loginForm"><div class="formrow"><label>이메일</label><input class="field" id="cloudEmail" type="email" autocomplete="username" required></div><div class="formrow"><label>비밀번호</label><input class="field" id="cloudPass" type="password" autocomplete="current-password" required></div><p id="cloudErr" style="color:#b74d55;font-size:13px">'+esc(error)+'</p><button class="btn primary" style="width:100%" type="submit">로그인</button></form><button class="btn small" style="margin-top:13px" id="changeCloud">연결 설정 변경</button>');el.querySelector('#changeCloud').onclick=()=>configScreen();el.querySelector('#loginForm').onsubmit=async e=>{e.preventDefault();let btn=el.querySelector('button[type="submit"]');btn.disabled=true;const {data,error}=await cloudClient.auth.signInWithPassword({email:el.querySelector('#cloudEmail').value,password:el.querySelector('#cloudPass').value});btn.disabled=false;if(error){el.querySelector('#cloudErr').textContent='로그인 실패: '+error.message;return}cloudUser=data.user;try{await enterCloud()}catch(err){loginScreen('독서 기록을 불러오지 못했어요: '+err.message)}}}
+function fromBook(r){return{id:r.id,title:r.title,author:r.author||'',publisher:r.publisher||'',isbn:r.isbn||'',barcode:r.barcode||'',type:r.ownership,status:r.reading_status,pages:r.page_count||0,current:r.current_page||0,due:r.due_date||'',source:r.ownership==='lent'?(r.lent_to||''):(r.borrowed_from||''),cover:r.cover_url||'',notes:r.review||r.notes||'',rating:r.rating||0,created:(r.created_at||'').slice(0,10)}}
+function fromLog(r){return{id:r.id,bookId:r.book_id,date:r.read_on,pages:r.pages_read,minutes:r.minutes_read,note:r.note||''}}
+function toBook(b){return{id:b.id,user_id:cloudUser.id,isbn:b.isbn||null,barcode:b.barcode||null,title:b.title,author:b.author||null,publisher:b.publisher||null,cover_url:b.cover||null,page_count:b.pages||null,current_page:b.current||0,ownership:b.type,reading_status:b.status,borrowed_from:b.type==='borrowed'?(b.source||null):null,lent_to:b.type==='lent'?(b.source||null):null,due_date:b.due||null,rating:b.rating||null,review:b.notes||null}}
+function toLog(l){return{id:l.id,user_id:cloudUser.id,book_id:l.bookId,read_on:l.date,minutes_read:l.minutes||0,pages_read:l.pages||0,note:l.note||null}}
+async function fetchAll(table){let all=[],from=0;while(true){let{data,error}=await cloudClient.from(table).select('*').range(from,from+999);if(error)throw error;all.push(...data);if(data.length<1000)break;from+=1000}return all}
+async function enterCloud(){setSync('불러오는 중…');const [books,logs]=await Promise.all([fetchAll('books'),fetchAll('reading_sessions')]);const {data:userInfo}=await cloudClient.auth.getUser();db={books:books.map(fromBook),logs:logs.map(fromLog),goal:Math.max(1,Number(userInfo?.user?.user_metadata?.reading_goal)||12)};serverShadow=clone(db);document.getElementById('cloudGate')?.remove();$('logoutButton').classList.remove('hidden');$('logoutButton').onclick=logoutCloud;setSync('✓ 동기화됨');render()}
+async function logoutCloud(){try{await pendingSync}catch{}const {error}=await cloudClient.auth.signOut();if(error){alert(error.message);return}cloudUser=null;cloudClient=null;db={books:[],logs:[],goal:12};$('main').innerHTML='';$('stats').innerHTML='';$('logoutButton').classList.add('hidden');setSync('로그아웃됨');loginScreen()}
+function changed(a,b){return JSON.stringify(a)!==JSON.stringify(b)}
+async function syncSnapshot(snapshot){if(!cloudUser)throw Error('로그인이 필요합니다');let old=serverShadow;const oldBooks=new Map(old.books.map(x=>[x.id,x])),oldLogs=new Map(old.logs.map(x=>[x.id,x]));const nextBooks=new Set(snapshot.books.map(x=>x.id)),nextLogs=new Set(snapshot.logs.map(x=>x.id));let booksUp=snapshot.books.filter(b=>!oldBooks.has(b.id)||changed(toBook(b),toBook(oldBooks.get(b.id))));let logsUp=snapshot.logs.filter(l=>!oldLogs.has(l.id)||changed(toLog(l),toLog(oldLogs.get(l.id))));async function batch(table,arr){if(!arr.length)return;const {error}=await cloudClient.from(table).upsert(arr,{onConflict:'id'});if(error)throw error}async function del(table,ids){if(!ids.length)return;const {error}=await cloudClient.from(table).delete().in('id',ids);if(error)throw error}
+await batch('books',booksUp.map(toBook));await batch('reading_sessions',logsUp.map(toLog));await del('reading_sessions',old.logs.filter(x=>!nextLogs.has(x.id)).map(x=>x.id));await del('books',old.books.filter(x=>!nextBooks.has(x.id)).map(x=>x.id));if(snapshot.goal!==old.goal){let{error}=await cloudClient.auth.updateUser({data:{reading_goal:snapshot.goal}});if(error)throw error}serverShadow=clone(snapshot)}
+function queueSync(snapshot){setSync('저장 중…');pendingSync=pendingSync.catch(()=>{}).then(async()=>{try{await syncSnapshot(snapshot);setSync('✓ 동기화됨')}catch(err){setSync('⚠ 동기화 실패',true);console.error('Sync failed',err);alert('클라우드 저장 실패: '+err.message+'\n현재 화면을 닫지 말고 네트워크 및 권한을 확인해 주세요.');throw err}})}
+
+
+
+// Photos are hosted in a public-read Supabase Storage bucket named book-covers.
+// Upload paths are scoped to the authenticated user's UUID. The REST API key is never exposed.
+async function uploadBookCoverPhoto(file){
+ if(!cloudClient||!cloudUser)throw Error('Supabase 로그인이 필요해요.');
+ const allowed={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'};
+ if(!allowed[file.type]||file.size>5*1024*1024)throw Error('JPG·PNG·WebP 형식, 5MB 이하 파일만 가능해요.');
+ const path=cloudUser.id+'/'+uid()+'.'+allowed[file.type];
+ const {error}=await cloudClient.storage.from('book-covers').upload(path,file,{contentType:file.type,cacheControl:'3600',upsert:false});
+ if(error)throw Error(error.message+' (Storage 버킷 및 정책을 확인해 주세요)');
+ const {data}=cloudClient.storage.from('book-covers').getPublicUrl(path);
+ if(!data?.publicUrl)throw Error('업로드된 표지 URL을 가져오지 못했습니다.');
+ return data.publicUrl;
+}
+
+// Cover lookup works only for valid ISBN and saves only the cover_url field.
+async function findBookCover(isbn){
+ const code=String(isbn||'').replace(/[^0-9Xx]/g,'');
+ if(!/^(\d{13}|\d{9}[\dXx])$/.test(code))return '';
+ const kakao=async()=>{const results=await fetchKakaoBooks(code,'isbn');const match=results.find(x=>String(x.isbn||'').replace(/[^0-9X]/gi,'').toUpperCase()===code.toUpperCase());return match?.cover||''};
+ const google=async()=>{
+  const r=await fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:'+encodeURIComponent(code),{signal:AbortSignal.timeout(12000)});
+  if(!r.ok)return '';
+  const data=await r.json();
+  const books=data.items||[];
+  const same=books.find(item=>(item.volumeInfo?.industryIdentifiers||[]).some(x=>String(x.identifier||'').replace(/[^0-9Xx]/g,'').toUpperCase()===code.toUpperCase()));
+  const img=same?.volumeInfo?.imageLinks;
+  return (img?.thumbnail||img?.smallThumbnail||'').replace(/^http:/,'https:');
+ };
+ const openLibrary=async()=>{
+  const r=await fetch('https://openlibrary.org/isbn/'+encodeURIComponent(code)+'.json',{signal:AbortSignal.timeout(12000)});
+  if(!r.ok)return '';
+  const book=await r.json();
+  return book.covers?.length?'https://covers.openlibrary.org/b/id/'+encodeURIComponent(book.covers[0])+'-M.jpg':'';
+ };
+ try{const result=await kakao();if(result)return result}catch(e){console.warn('Kakao Books cover lookup:',e)}
+ try{const result=await google();if(result)return result}catch(e){console.warn('Google Books cover lookup:',e)}
+ try{return await openLibrary()}catch(e){console.warn('Open Library cover lookup:',e);return ''}
+}
+let coverBatchRunning=false;
+async function fillMissingCovers(){
+ if(coverBatchRunning||!cloudUser||!cloudClient)return;
+ const targets=db.books.filter(b=>!b.cover&&/^(\d{13}|\d{9}[\dXx])$/.test(String(b.isbn||'').replace(/[^0-9Xx]/g,'')));
+ const noIsbn=db.books.filter(b=>!b.cover).length-targets.length;
+ if(!targets.length){alert('자동 검색할 책이 없어요. 표지가 없고 ISBN이 등록된 책만 검색합니다.');return}
+ if(!confirm(`표지가 없는 책 ${targets.length}권을 검색할까요?\nISBN이 없는 책 ${noIsbn}권은 건너뜁니다.\n기존 표지는 변경하지 않습니다.`))return;
+ const btn=$('fillCovers'),status=$('coverBatchStatus');
+ coverBatchRunning=true;btn.disabled=true;let done=0,found=0,notFound=0,failed=0;
+ const accountId=cloudUser.id;
+ function progress(){if(status)status.textContent=`검색 ${done}/${targets.length}권 · 표지 저장 ${found}권 · 미발견 ${notFound}권 · 오류 ${failed}권`}
+ progress();
+ async function worker(){
+  while(true){const i=doneIndex++;if(i>=targets.length)return;
+   const b=targets[i];
+   try{
+    if(!cloudUser||cloudUser.id!==accountId)throw Error('로그인이 변경됨');
+    const url=await findBookCover(b.isbn);
+    if(url){
+      const {data,error}=await cloudClient.from('books').update({cover_url:url}).eq('id',b.id).eq('user_id',accountId).select('id');
+      if(error)throw error;
+      if(!data?.length)throw Error('표지 저장 대상이 없습니다');
+      b.cover=url;found++;
+    }else notFound++;
+   }catch(e){console.warn('Cover update failed:',b.title,e);failed++}
+   done++;progress();
+  }
+ }
+ let doneIndex=0;
+ try{await Promise.all(Array.from({length:Math.min(3,targets.length)},()=>worker()));
+  // Sync diff baseline with directly persisted covers to prevent later accidental overwrites.
+  for(const book of serverShadow.books){const local=db.books.find(b=>b.id===book.id);if(local&&local.cover)book.cover=local.cover}
+  render();
+  // render() destroys settings status; restore settings tab and show the actual outcome.
+  if(tab==='settings'){$('coverBatchStatus').textContent=`완료: 표지 ${found}권 저장 · 미발견 ${notFound}권 · 오류 ${failed}권 (검색 ${done}권)`}
+  alert(`표지 검색 완료!\n새로 저장 ${found}권\n표지 미발견 ${notFound}권\n오류 ${failed}권\n기존 책과 독서 기록은 유지했어요.`);
+ }finally{coverBatchRunning=false;const next=$('fillCovers');if(next)next.disabled=false}
+}
+
+startCloud();
+</script></body></html>
